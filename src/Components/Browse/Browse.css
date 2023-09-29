@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,700;1,300&display=swap');
+
+input{
+    text-decoration: none;
+    height: 30px;
+    border:1px solid rgb(96, 96, 96);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    border-radius: 20px;
+    text-align: center;
+    font-family:  'Ubuntu', sans-serif;
+
+}
+.browse{
+    display: flex;
+    margin: 10px;
+}

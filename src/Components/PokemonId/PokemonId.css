@@ -1,0 +1,97 @@
+/* PokemonId.css */
+
+/* Estilos para el contenedor principal */
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  flex-direction: row;
+}
+
+/* Estilos para cada tarjeta (left-info, center-info, right-info) */
+.card {
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: #fff; /* Color de fondo para las tarjetas */
+}
+
+.card p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card img {
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Estilos para la lista de tipos */
+.types {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.types ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.types li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 15px;
+  border-radius: 50px;
+  margin: 10px;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: #fff; /* Color de texto para los tipos */
+}
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-hp {
+  height: 100%;
+  background-color: #4caf50;
+}
+.progress-attack {
+  height: 100%;
+  background-color: #af4c4c;
+}
+.progress-defense {
+  height: 100%;
+  background-color: #4c4faf;
+}
+.progress-special-attack {
+  height: 100%;
+  background-color: #ce1e1e;
+}
+.progress-special-defense {
+  height: 100%;
+  background-color: #1ea8ce;
+} 
+.progress-speed{
+   height: 100%;
+background-color: #e5cd19;
+}
