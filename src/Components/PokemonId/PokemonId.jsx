@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./PokemonId.css";
 import { useParams } from "react-router-dom";
 import { Navbar } from "../Navbar/Navbar";
-
+import { imgUrl, typeColors } from "../Constant/Constants";
+import { StatBar } from "../StatBar/StatBar";
 function Pokemon() {
   const [pokemonData, setPokemonData] = useState(null);
-  const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-    pokemonData ? pokemonData.id : ""
-  }.png`;
   let { pokemonDataId } = useParams();
 
   useEffect(() => {
@@ -22,25 +20,6 @@ function Pokemon() {
       });
   }, []);
 
-  const typeColors = {
-    grass: "#86c152",
-    fire: "#ed9338",
-    water: "#8498e4",
-    bug: "#5ecf5e",
-    poison: "#cc8ae8",
-    electric: "#fad737",
-    ground: "#c0954f",
-    fairy: "#ffdede",
-    fighting: "#a75543",
-    psychic: "#ff6090",
-    rock: "#b6a136",
-    ghost: "#735797",
-    ice: "#96d9d6",
-    dragon: "#6f35fc",
-    steel: "#b7b9d0",
-    flying: "#a1bbec",
-  };
-
   const getColor = (type) => typeColors[type] || "#cfe5e6";
 
   return (
@@ -50,15 +29,19 @@ function Pokemon() {
         <div className="left-info">
           <div className="name">
             <h2>Name</h2>
-            <h2>{pokemonData ? pokemonData.name : "Loading..."}</h2>
+            <p>{pokemonData ? pokemonData.name : "Loading..."}</p>
           </div>
           <div className="id">
-            <p>Id</p>
+            <h2>Id</h2>
             <p>{pokemonData ? pokemonData.id : "Loading..."}</p>
           </div>
           <div className="weight">
-            <p>Weight</p>
-            <p>{pokemonData ? pokemonData.weight : "Loading..."}</p>
+            <h2>Weight</h2>
+            <p>{pokemonData ? pokemonData.weight : "Loading..."}cm</p>
+          </div>
+          <div className="height">
+            <h2>Height</h2>
+            <p>{pokemonData ? pokemonData.height : "Loading..."}kg</p>
           </div>
           <div className="types">
             <ul>
@@ -78,120 +61,36 @@ function Pokemon() {
           </div>
         </div>
         <div className="center-info">
-          <img src={imgUrl} alt={pokemonData ? pokemonData.name : ""} />
+          <img
+            src={imgUrl(pokemonData)}
+            alt={pokemonData ? pokemonData.name : ""}
+          />
         </div>
         <div className="right-info">
-          <div className="stat-bar">
-            <p>
-              HP: {pokemonData ? pokemonData.stats[0].base_stat : "Loading..."}
-            </p>
-            <div className="progress-bar">
-              <div
-                className="progress-hp"
-                style={{
-                  width: `${
-                    pokemonData
-                      ? (pokemonData.stats[0].base_stat / 255) * 100
-                      : 0
-                  }%`,
-                }}
-              ></div>
-            </div>
-          </div>
-          <div className="stat-bar">
-            <p>
-              Attack:{" "}
-              {pokemonData ? pokemonData.stats[1].base_stat : "Loading..."}
-            </p>
-            <div className="progress-bar">
-              <div
-                className="progress-attack"
-                style={{
-                  width: `${
-                    pokemonData
-                      ? (pokemonData.stats[1].base_stat / 255) * 100
-                      : 0
-                  }%`,
-                }}
-              ></div>
-            </div>
-          </div>
-          <div className="stat-bar">
-            <p>
-              Defense:{" "}
-              {pokemonData ? pokemonData.stats[2].base_stat : "Loading..."}
-            </p>
-
-            <div className="progress-bar">
-              <div
-                className="progress-defense"
-                style={{
-                  width: `${
-                    pokemonData
-                      ? (pokemonData.stats[2].base_stat / 255) * 100
-                      : 0
-                  }%`,
-                }}
-              ></div>
-            </div>
-          </div>
-          <div className="stat-bar">
-            <p>
-              Sp. Attack:{" "}
-              {pokemonData ? pokemonData.stats[3].base_stat : "Loading..."}
-            </p>
-
-            <div className="progress-bar">
-              <div
-                className="progress-special-attack"
-                style={{
-                  width: `${
-                    pokemonData
-                      ? (pokemonData.stats[3].base_stat / 255) * 100
-                      : 0
-                  }%`,
-                }}
-              ></div>
-            </div>
-          </div>
-          <div className="stat-bar">
-            <p>
-              Sp. Defense:{" "}
-              {pokemonData ? pokemonData.stats[4].base_stat : "Loading..."}
-            </p>
-
-            <div className="progress-bar">
-              <div
-                className="progress-special-defense"
-                style={{
-                  width: `${
-                    pokemonData
-                      ? (pokemonData.stats[4].base_stat / 255) * 100
-                      : 0
-                  }%`,
-                }}
-              ></div>
-            </div>
-          </div>
-          <div className="stat-bar">
-            <p>
-              Speed:{" "}
-              {pokemonData ? pokemonData.stats[5].base_stat : "Loading..."}
-            </p>
-
-            <div className="progress-bar">
-              <div
-                className="progress-speed"
-                style={{
-                  width: `${
-                    pokemonData
-                      ? (pokemonData.stats[5].base_stat / 255) * 100
-                      : 0
-                  }%`,
-                }}
-              ></div>
-            </div>
-          </div>
+          <StatBar
+            label="HP"
+            value={pokemonData ? pokemonData.stats[0].base_stat : null}
+          />
+          <StatBar
+            label="Attack"
+            value={pokemonData ? pokemonData.stats[1].base_stat : null}
+          />
+          <StatBar
+            label="Defense"
+            value={pokemonData ? pokemonData.stats[2].base_stat : null}
+          />
+          <StatBar
+            label="Sp Attack"
+            value={pokemonData ? pokemonData.stats[3].base_stat : null}
+          />
+          <StatBar
+            label="Sp Defense"
+            value={pokemonData ? pokemonData.stats[4].base_stat : null}
+          />
+          <StatBar
+            label="Speed"
+            value={pokemonData ? pokemonData.stats[5].base_stat : null}
+          />
         </div>
       </div>
     </>

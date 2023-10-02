@@ -1,15 +1,13 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "./../Navbar/Navbar";
 import { Browse } from "./../Browse/Browse";
 import { Card } from "./../Card/Card";
+import { imgUrl, typeColors } from "../Constant/Constants";
 
 function Kokemones() {
   const [inputValue, setInputValue] = useState("");
-  // State variables
   const [pokemonList, setPokemonList] = useState([]);
 
-  // Fetching data from API on component mount
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=10")
       .then((response) => response.json())
@@ -26,28 +24,30 @@ function Kokemones() {
       });
   }, []);
 
-  // Handling input change
-  const handleInputChange = (value) => {
-    setInputValue(value);
-  };
+  const handleInputChange = (value) => setInputValue(value);
 
-  // Filtering the pokemon list based on input value
   const filteredPokemonList = pokemonList.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(inputValue.toLowerCase())
   );
+
   return (
     <>
       <Navbar />
       <div className="container">
         <Browse inputValue={inputValue} handleInputChange={handleInputChange} />
-
         <div className="card-container">
-          {filteredPokemonList.map((pokemon, index) => (
-            <Card key={pokemon.name} pokemon={pokemon} index={index} />
+          {filteredPokemonList.map((pokemon) => (
+            <Card
+              key={pokemon.name}
+              pokemon={pokemon}
+              imgUrl={imgUrl}
+              typeColors={typeColors}
+            />
           ))}
         </div>
       </div>
     </>
   );
 }
+
 export { Kokemones };
