@@ -8,7 +8,7 @@ export const PokeProvider = ({ children }) => {
   const [browse, setBrowse] = useState(null);
 
   const getAllPokemons = useCallback(async () => {
-    const api = "https://pokeapi.co/api/v2/pokemon/?limit=11";
+    const api = "https://pokeapi.co/api/v2/pokemon/?limit=151";
     const response = await fetch(api);
     const data = await response.json();
     setPokemonData(data.results);
