@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Card.css";
 import { imgUrl, typeColors } from "../Constant/Constants";
@@ -11,14 +11,17 @@ const Card = ({ pokemon }) => {
   };
 
   useEffect(() => {
-    fetch(pokemon.url)
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchPokemonData = async () => {
+      try {
+        const response = await fetch(pokemon.url);
+        const data = await response.json();
         setPokemonData(data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.log(error);
-      });
+      }
+    };
+
+    fetchPokemonData();
   }, [pokemon.url]);
 
   const backCard = {
@@ -28,11 +31,10 @@ const Card = ({ pokemon }) => {
 
   return (
     <div className="card" style={backCard} onClick={handleClick}>
-      <p>{pokemonData ? `ID: ${pokemonData.id}` : "Loading..."}</p>
+      <p>{pokemonData ? `# ${pokemonData.id}` : "Loading..."}</p>
       <img src={imgUrl(pokemonData)} alt={pokemon.name} />
       <h2>{pokemonData ? pokemonData.name : ""}</h2>
       <div className="type">
-        <h3>Type:</h3>
         <ul>
           {pokemonData &&
             pokemonData.types.map((type) => (
