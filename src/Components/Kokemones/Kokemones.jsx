@@ -20,6 +20,7 @@ function Kokemones() {
 
     fetchData();
   }, [getAllPokemons, pokemonData]);
+
   const handleInputChange = (value) => setInputValue(value);
 
   const filteredPokemonList = pokemonList.filter((pokemon) =>

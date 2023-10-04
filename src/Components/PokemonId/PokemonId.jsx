@@ -21,7 +21,7 @@ function Pokemon() {
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div className="content">
         <div className="left-info">
           <div className="name">
             <h2>Name</h2>

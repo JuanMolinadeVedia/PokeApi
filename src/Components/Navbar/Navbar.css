@@ -4,6 +4,6 @@
 }
 
 header{
-    background: linear-gradient(180deg, #0084ff, #fff);
+    background: radial-gradient(circle, #fff, #0084ff);
     padding: 2em;
 }

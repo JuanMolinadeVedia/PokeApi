@@ -5,7 +5,6 @@ export const PokeContext = createContext();
 export const PokeProvider = ({ children }) => {
   const [pokemonData, setPokemonData] = useState(null);
   const [pokemonDetail, setPokemonDetail] = useState(null);
-  const [browse, setBrowse] = useState(null);
 
   const getAllPokemons = useCallback(async () => {
     const api = "https://pokeapi.co/api/v2/pokemon/?limit=151";
@@ -13,11 +12,6 @@ export const PokeProvider = ({ children }) => {
     const data = await response.json();
     setPokemonData(data.results);
   }, []);
-
-  const handleChangeInput = (e) => {
-    console.log(e.target.value);
-    setBrowse(e.target.value);
-  };
 
   const getPokemon = useCallback(async (id) => {
     const nameApi = `https://pokeapi.co/api/v2/pokemon/${id}`;
@@ -33,7 +27,6 @@ export const PokeProvider = ({ children }) => {
         pokemonDetail,
         getPokemon,
         getAllPokemons,
-        handleChangeInput,
       }}
     >
       {children}
