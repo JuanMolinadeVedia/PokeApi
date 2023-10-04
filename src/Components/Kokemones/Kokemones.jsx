@@ -8,7 +8,8 @@ import { imgUrl, typeColors } from "../Constant/Constants";
 function Kokemones() {
   const [inputValue, setInputValue] = useState("");
   const [pokemonList, setPokemonList] = useState([]);
-  const { getAllPokemons, pokemonData } = useContext(PokeContext);
+  const { getAllPokemons, pokemonData, darkMode, toggleDarkMode } =
+    useContext(PokeContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,8 +30,8 @@ function Kokemones() {
 
   return (
     <>
-      <Navbar />
-      <div className="container">
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <div className={`container${darkMode ? " dark-mode" : ""}`}>
         <Browse inputValue={inputValue} handleInputChange={handleInputChange} />
         <div className="card-container">
           {filteredPokemonList.map((pokemon) => (

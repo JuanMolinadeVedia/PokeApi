@@ -1,9 +1,25 @@
-*{
-    padding: 0;
-    margin: 0;
+* {
+  padding: 0;
+  margin: 0;
+}
+.header {
+  padding: 2em;
+}
+/* Estilos para el modo oscuro */
+.navbar-dark {
+  background: linear-gradient(#333, #0084ff);
+  color: #fff;
+}
+.navbar-dark button {
+  background-color: #555;
+  color: #fff;
 }
 
-header{
-    background: radial-gradient(circle, #fff, #0084ff);
-    padding: 2em;
+/* Estilos para el modo claro */
+.navbar-light {
+  background: linear-gradient(#0084ff, #fff);
+}
+.navbar-light button {
+  background-color: #eee;
+  color: #333;
 }

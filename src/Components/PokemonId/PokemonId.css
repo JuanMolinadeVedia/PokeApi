@@ -5,17 +5,22 @@
   padding: 20px;
   flex-direction: row;
 }
-
-.left-info, .center-info, .right-info {
+.content.dark-mode{
+  background-color: #333;
+  color: #fff;
+}
+.left-info,
+.center-info,
+.right-info {
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
-  background-color: #fff; /* Color de fondo para las tarjetas */
+  background-color: #fff;
   display: flex;
   gap: 10px;
   padding: 10px;
   flex-direction: column;
+  min-width: 300px;
 }
 
 .left-info p,
@@ -28,14 +33,12 @@
   width: 500px;
   height: 500px;
 }
-
 .left-info h2,
 .right-info h2 {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-/* Estilos para la lista de tipos */
 .types {
   display: flex;
   flex-direction: column;
@@ -63,9 +66,10 @@
   font-size: 14px;
   font-weight: bold;
   text-transform: capitalize;
-  color: #fff; /* Color de texto para los tipos */
+  color: #fff;
 }
-.progress-bar {
+
+.right-info .progress-bar {
   width: 100%;
   height: 10px;
   background-color: #ddd;
@@ -73,27 +77,32 @@
   overflow: hidden;
 }
 
-.progress-hp {
+.right-info .progress-hp {
   height: 100%;
   background-color: #4caf50;
 }
-.progress-attack {
+
+.right-info .progress-attack {
   height: 100%;
   background-color: #af4c4c;
 }
-.progress-defense {
+
+.right-info .progress-defense {
   height: 100%;
   background-color: #4c4faf;
 }
-.progress-sp.-attack {
+
+.right-info .progress-sp-attack {
   height: 100%;
   background-color: #ce1e1e;
 }
-.progress-sp.-defense {
+
+.right-info .progress-sp-defense {
   height: 100%;
   background-color: #1ea8ce;
-} 
-.progress-speed{
-   height: 100%;
-background-color: #e5cd19;
+}
+
+.right-info .progress-speed {
+  height: 100%;
+  background-color: #e5cd19;
 }

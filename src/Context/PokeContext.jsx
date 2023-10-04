@@ -5,6 +5,7 @@ export const PokeContext = createContext();
 export const PokeProvider = ({ children }) => {
   const [pokemonData, setPokemonData] = useState(null);
   const [pokemonDetail, setPokemonDetail] = useState(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   const getAllPokemons = useCallback(async () => {
     const api = "https://pokeapi.co/api/v2/pokemon/?limit=151";
@@ -20,6 +21,10 @@ export const PokeProvider = ({ children }) => {
     setPokemonDetail(data);
   }, []);
 
+  const toggleDarkMode = () => {
+    setDarkMode((prevDarkMode) => !prevDarkMode);
+  };
+
   return (
     <PokeContext.Provider
       value={{
@@ -27,6 +32,8 @@ export const PokeProvider = ({ children }) => {
         pokemonDetail,
         getPokemon,
         getAllPokemons,
+        darkMode,
+        toggleDarkMode,
       }}
     >
       {children}

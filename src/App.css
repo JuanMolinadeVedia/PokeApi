@@ -1,6 +1,6 @@
   @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,700;1,300&display=swap');
 .card {
-    border: 2px solid rgb(129, 129, 129);
+    /* border: 2px solid rgb(129, 129, 129); */
     background-color: rgb(213, 213, 213);
     padding: 10px;
     margin: 10px;
@@ -16,9 +16,9 @@
   }
   
   .card:hover {
-    transform: scale(1.01);
-    border: 2px solid rgb(129, 0, 0);
-    box-shadow: 0 0 10px rgba(242, 3, 3, 0.5);
+    transform: scale(1.1);
+    /* border: 2px solid rgb(129, 0, 0); */
+    /* box-shadow: 0 0 10px rgba(242, 3, 3, 0.5); */
     transition: transform 0.3s ease;
 
   }

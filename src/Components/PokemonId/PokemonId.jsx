@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./PokemonId.css";
 import { PokeContext } from "../../Context/PokeContext";
 import { useParams } from "react-router-dom";
@@ -6,29 +6,55 @@ import { Navbar } from "../Navbar/Navbar";
 import { imgUrl, typeColors } from "../Constant/Constants";
 import { StatBar } from "../StatBar/StatBar";
 function Pokemon() {
-  const { pokemonDetail, getPokemon } = useContext(PokeContext);
+  const { pokemonDetail, getPokemon, darkMode, toggleDarkMode } =
+    useContext(PokeContext);
+  const [loading, setLoading] = useState(true);
   let { pokemonDataId } = useParams();
 
   useEffect(() => {
     const fetchPokemonData = async () => {
+      setLoading(true);
       await getPokemon(pokemonDataId);
+      setLoading(false);
     };
+
     fetchPokemonData();
   }, [getPokemon, pokemonDataId]);
 
+  if (loading) {
+    return (
+      <p
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          fontSize: "200px",
+        }}
+      >
+        Loading...
+      </p>
+    );
+  }
+
   const getColor = (type) => typeColors[type] || "#cfe5e6";
+  const getShadowColor = () => {
+    if (pokemonDetail && pokemonDetail.types.length > 0) {
+      const type = pokemonDetail.types[0].type.name;
+      const color = typeColors[type] || "#cfe5e6";
+      return `${color}80`;
+    }
+    return "#cfe5e6";
+  };
 
   return (
     <>
-      <Navbar />
-      <div className="content">
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <div className={`content${darkMode ? " dark-mode" : ""}`}>
         <div className="left-info">
           <div className="name">
             <h2>Name</h2>
             <p>{pokemonDetail ? pokemonDetail.name : "Loading..."}</p>
-          </div>
-          <div className="id">
-            <p>{pokemonDetail ? pokemonDetail.id : "Loading..."}</p>
           </div>
           <div className="weight">
             <h2>Weight</h2>
@@ -58,6 +84,9 @@ function Pokemon() {
         <div className="center-info">
           <img
             src={imgUrl(pokemonDetail)}
+            style={{
+              filter: `drop-shadow(30px 15px 4px ${getShadowColor()})`,
+            }}
             alt={pokemonDetail ? pokemonDetail.name : ""}
           />
         </div>
